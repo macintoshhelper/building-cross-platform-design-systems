@@ -1,0 +1,252 @@
+import * as themes from './theme';
+import { Container } from './components/primitives';
+
+export const theme = themes.light;
+
+<Container>
+
+# Building Cross-Platform React Apps
+
+Building cross-platform React apps, with component-driven design.
+
+</Container>
+
+<Notes>
+  Building cross-platform React apps.
+  Integrating design systems into your app development workflow, with component-driven development.
+</Notes>
+
+---
+
+<Container>
+
+# Quotes
+
+“React is such a good idea that we will spend the rest of the decade continuing to explore its implications and applications.”
+
+Guillermo Rauch – founder of Vercel (ZEIT)
+
+“Here’s the simple truth: you can’t innovate on products without first innovating the way you build them.”
+
+Alex Schleifer – VP of Design at Airbnb
+
+
+</Container>
+
+---
+
+<Container>
+
+# What is React?
+
+JavaScript library for building user interfaces.
+
+Where UI is a function of state.
+
+```js
+UI = fn(state);
+```
+
+- Declarative
+  - function that takes your application state and renders an interactive UI.
+- Component-Based
+  - Should apply to design too
+- Learn Once, Write Anywhere
+  - Cross-platform (with some work)
+
+</Container>
+
+<Notes>
+Design as a Function of Data – Jon Gold (ex-Airbnb Research Scientist)
+</Notes>
+
+---
+
+<Container>
+
+# React Renderer
+
+```js
+type createElement = (type, props, children) => ReactElement;
+```
+
+```js
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Hello, world!'
+  }
+};
+```
+
+
+</Container>
+
+---
+
+<Container>
+
+# `react-dom`
+
+```js
+const App = () => (
+  <div>
+    <h1>Hello World</h1>
+  </div>
+  <main>
+    <div
+      onClick={() => alert('Hello World!')}
+      style={{ flex: 1, backgroundColor: 'green' }}
+    />
+    <HomePageContent />
+  </main>
+);
+
+const appRawJson = {
+  "type": "div",
+  "props": {
+    "children": [{
+      "type": "h1",
+      "props": {
+        "children": ["Hello World"]
+      }
+    }]
+  }
+};
+```
+
+</Container>
+
+---
+
+<Container>
+
+# `react-native`
+
+```js
+const App = () => (
+  <View>
+    <Text>Hello World</Text>
+  </View>
+  <View>
+    <Touchable onPress={() => alert('Hello World!')}>
+      <View style={{ flex: 1, backgroundColor: 'green' }}/>
+    </Touchable>
+    <HomePageContent />
+  </View>
+);
+
+const appRawJson = {
+  "type": "view",
+  "props": {
+    "children": [{
+      "type": "text",
+      // Should be something like "native_text",
+      // since it's an internal/private API
+      "props": {
+        "children": ["Hello World"]
+      }
+    }]
+  }
+};
+```
+
+</Container>
+
+---
+
+<Container>
+
+# React Reconciler
+
+Go to code
+
+</Container>
+
+---
+
+<Container>
+
+# Platforms
+
+Apps traditionally target specific platforms.
+
+<Steps>
+
+- Web – HTML / CSS –> `react-dom`
+- iOS – Objective-C / Swift -> `react-native`
+- Android – Java / Kotlin -> `react-native`
+- Mac – Objective-C / Swift -> `react-native-macos`
+- Windows – C# -> `react-native-windows`
+- Linux – C++ / QT -> `react-native-desktop-qt`
+
+</Steps>
+
+</Container>
+
+<Notes>
+  You need to either choose a specific platform and focus on that, or build your app multiple times for it to work across different platforms.
+
+  e.g. web and react-native
+</Notes>
+
+---
+
+# `react-primitives`
+
+Primitive React Interfaces Across Targets.
+
+Exposes a common API across many React platforms, that lets you build your UI once and render it to any platform.
+
+Great for design systems and component libraries.
+
+---
+
+# `react-sketchapp`
+
+<Container>
+
+React Sketch.app is an open-source library that allows you to write React components that render to Sketch documents.
+
+<Steps>
+
+- Currently built with `react-test-renderer` (no runtime)
+- Build components with `react-primitives`
+- Render them to Sketch
+- Generate design assets/library to hand over to a designer
+- Svg support – (d3.js)
+
+</Steps>
+
+</Container>
+
+---
+
+<Container>
+
+# `react-figma`
+
+React Figma is an open-source library that allows you to write React components that render to Figma documents.
+
+<Steps>
+
+- Built with `react-reconciler` (access to runtime events)
+
+</Steps>
+
+</Container>
+
+---
+
+<Container>
+
+# Lona
+
+A tool for defining design systems and using them to generate cross-platform UI code, Sketch files, and other artifacts.
+
+<Notes>
+  Generates native code, i.e. Swift, Kotlin, React, React Native, React Sketch.app, etc. Not React specific.
+</Notes>
+
+</Container>
